@@ -34,7 +34,6 @@ def getWholeNum(arr, x, y):
         v.insert(0, int(arr[x][y - 1]))
         y -= 1
     combinedInt = int("".join(map(str, v)))
-    # print(combinedInt)
     return combinedInt
 
 
@@ -42,7 +41,7 @@ engine = []
 resultArray = []
 result = 0
 specialChars = "!@#$%^&*()-+?_=,<>/"
-with open("example.txt", "r") as file:
+with open("input.txt", "r") as file:
     for line in file:
         row = list(line.strip())
         engine.append(row)
@@ -50,18 +49,14 @@ with open("example.txt", "r") as file:
         for col in range(len(engine[row])):
             if engine[row][col] in specialChars:
                 coordList = getAdjacent(engine, row, col)
-                print(coordList)
                 tempArray = []
                 for coordinates in coordList:
                     x, y = coordinates
                     wholeNum = getWholeNum(engine, x, y)
                     tempArray.append(wholeNum)
                     tempArray = list(set(tempArray))
-                    print("Temp:", tempArray)
                 resultArray += tempArray
-                print("Result:", resultArray)
 
-# print(resultArray)
 resultArray = list(resultArray)
 for i in range(len(resultArray)):
     result += resultArray[i]
